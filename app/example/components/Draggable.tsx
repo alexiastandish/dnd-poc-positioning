@@ -1,17 +1,25 @@
 "use client";
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
+import { FlowerElements, FormFlowerInstance } from "../FormElements";
 
+// update to dynamic
 const CustomStyle = {
   display: "flex",
-  width: "100px",
-  height: "100px",
-  backgroundColor: "#e8e8a2",
+  border: "1px solid black",
 };
 
-export function Draggable({ id, content, styles }) {
+export function Draggable({
+  flower,
+  styles,
+}: {
+  flower: FormFlowerInstance;
+  styles: any;
+}) {
+  console.log("flower", flower);
+  const BuilderComponent = FlowerElements[flower.type].builderComponent;
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
+    id: flower.id,
   });
 
   const style = transform
@@ -27,7 +35,8 @@ export function Draggable({ id, content, styles }) {
       {...listeners}
       {...attributes}
     >
-      {content}
+      <BuilderComponent flowerInstance={flower} />
+      {/* {content} */}
     </div>
   );
 }

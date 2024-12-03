@@ -1,6 +1,9 @@
 "use client";
 import { useDraggable } from "@dnd-kit/core";
 import React from "react";
+import SidebarDraggable from "./SidebarDraggable";
+import SidebarFlower from "./SidebarFlower";
+import { FlowerElements } from "../FormElements";
 
 export default function Sidebar(props) {
   const blocks = [
@@ -30,6 +33,8 @@ export default function Sidebar(props) {
     },
   ];
 
+  // TODO: add text about color changing arnd resizing within the layout
+
   return (
     <div
       style={{
@@ -44,40 +49,7 @@ export default function Sidebar(props) {
       {blocks.map((block) => (
         <SidebarDraggable key={block.id} block={block} />
       ))}
-    </div>
-  );
-}
-
-function SidebarDraggable({ block }: { block: { id: string; label: string } }) {
-  const { setNodeRef, listeners, attributes, transform } = useDraggable({
-    id: block.id,
-    data: { isSidebarItem: true },
-  });
-
-  const style = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : {};
-
-  return (
-    <div
-      ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      style={{
-        width: "100px",
-        height: "100px",
-        padding: "10px",
-        marginBottom: "10px",
-        backgroundColor: "#f0f0f0",
-        border: "1px solid #ccc",
-        cursor: "grab",
-        textAlign: "center",
-        ...style,
-      }}
-    >
-      {block.label}
+      <SidebarFlower formFlower={FlowerElements.Hydrangea} />
     </div>
   );
 }
