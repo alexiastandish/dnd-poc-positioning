@@ -1,14 +1,6 @@
 import React from "react";
 import flowers from "@/app/example/utils/constants/flowers.json";
 import useShelfBuilder from "../../hooks/useShelfBuilder";
-import * as Select from "@radix-ui/react-select";
-import selectStyles from "./SelectStyles.module.scss";
-import cx from "classnames";
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@radix-ui/react-icons";
 import EditColor from "./EditColor";
 import EditSize from "./EditSize";
 export default function EditableConfig() {
@@ -34,6 +26,8 @@ export default function EditableConfig() {
         />
       )}
       <EditSize
+        minFlowerSize={flowers[type].size.minFlowerSize}
+        maxFlowerSize={flowers[type].size.maxFlowerSize}
         activeSize={editFlower.properties?.size}
         editIndex={editIndex}
       />

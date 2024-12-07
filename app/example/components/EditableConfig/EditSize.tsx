@@ -6,9 +6,13 @@ import useShelfBuilder from "../../hooks/useShelfBuilder";
 export default function EditSize({
   activeSize,
   editIndex,
+  minFlowerSize,
+  maxFlowerSize,
 }: {
   activeSize: number;
   editIndex: number;
+  minFlowerSize: number;
+  maxFlowerSize: number;
 }) {
   console.log("activeSize", activeSize);
   const { editFlowerSize } = useShelfBuilder();
@@ -18,7 +22,8 @@ export default function EditSize({
       {activeSize}
       <Slider.Root
         defaultValue={[activeSize]}
-        max={200}
+        max={maxFlowerSize}
+        min={minFlowerSize}
         value={[activeSize]}
         step={10}
         onValueChange={(size) => editFlowerSize(size, editIndex)}

@@ -10,7 +10,12 @@
       }
     },
     "colors": ["yellow", "purple", "blue"],
-    "size": { "height": 30, "width": 30 }
+    "size": {
+      "height": 60,
+      "width": 60,
+      "minFlowerSize": 30,
+      "maxFlowerSize": 100
+    }
   },
   "sunflower": {
     "type": "sunflower",
@@ -21,7 +26,12 @@
       }
     },
     "colors": ["yellow"],
-    "size": { "height": 100, "width": 100 }
+    "size": {
+      "height": 100,
+      "width": 100,
+      "minFlowerSize": 100,
+      "maxFlowerSize": 200
+    }
   },
   "cosmos": {
     "type": "cosmos",
@@ -33,7 +43,12 @@
       }
     },
     "colors": ["white", "fuschia"],
-    "size": { "height": 70, "width": 70 }
+    "size": {
+      "height": 70,
+      "width": 70,
+      "minFlowerSize": 60,
+      "maxFlowerSize": 200
+    }
   },
   "orange-tj-flowers": {
     "type": "orange-tj-flowers",
@@ -44,6 +59,11 @@
       }
     },
     "colors": ["orange"],
-    "size": { "height": 60, "width": 60 }
+    "size": {
+      "height": 60,
+      "width": 60,
+      "minFlowerSize": 30,
+      "maxFlowerSize": 100
+    }
   }
 }

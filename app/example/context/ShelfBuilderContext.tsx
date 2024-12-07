@@ -7,7 +7,7 @@ import {
   FormFlowerInstance,
   Position,
 } from "../FormElements";
-
+import defaultData from "@/app/example/utils/constants/flowers.json";
 import { Active } from "@dnd-kit/core";
 import { generateId } from "../utils/helpers/generateId";
 
@@ -20,6 +20,7 @@ type ShelfBuilderContextType = {
   setEditFlowerAndIndex: (value: FormFlowerInstance, index: number) => void;
   resetEditFlower: () => void;
   editFlowerSize: (size: number[], index: number) => void;
+  editFlowerColor: (color: string, index: number) => void;
 };
 
 export const ShelfBuilderContext =
@@ -45,29 +46,34 @@ export default function ShelfBuilderContextProvider({
   };
 
   const editFlowerSize = (size, index) => {
-    console.log("size", size);
-    console.log("flowers", flowers);
-    const updatedFlowers = flowers.map((flower, flowerIndex) => {
-      if (flowerIndex === index) {
-        return {
-          ...flower,
-          properties: { ...flower.properties, size: size[0] },
-        };
-      }
-      return flower;
-    });
-    console.log("updatedFlowers", updatedFlowers);
-    setEditFlower((prev) => ({
-      ...prev,
-      properties: { ...prev.properties, size: size[0] },
-    }));
+    const updatedFlowers = [...flowers];
+    const updatedFlower = { ...flowers[index] };
+    updatedFlower.properties.size = size[0];
+
+    updatedFlowers[index] = updatedFlower;
+    setEditFlower(updatedFlower);
+    return setFlowers(updatedFlowers);
+  };
+
+  const editFlowerColor = (color, index) => {
+    const updatedFlowers = [...flowers];
+    const updatedFlower = { ...flowers[index] };
+    updatedFlower.properties.color = color;
+    updatedFlowers[index] = updatedFlower;
+    setEditFlower(updatedFlower);
     return setFlowers(updatedFlowers);
   };
 
   const addFlower = (element: Active, position: Position) => {
+    const properties = {
+      size: defaultData[element?.data?.current?.type.toLowerCase()].size.width,
+      color: defaultData[element?.data?.current?.type.toLowerCase()].colors[0],
+    };
+
     const newFlower = FlowerElements[
       element?.data?.current?.type as FlowerType
-    ].construct(generateId());
+    ].construct(generateId(), element?.data?.current?.type, properties);
+    console.log("newFlower", newFlower);
 
     return setFlowers((prev) => {
       return [...prev, { ...newFlower, position }];
@@ -97,6 +103,7 @@ export default function ShelfBuilderContextProvider({
         setEditFlowerAndIndex,
         resetEditFlower,
         editFlowerSize,
+        editFlowerColor,
       }}
     >
       {children}

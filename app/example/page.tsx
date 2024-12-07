@@ -32,6 +32,7 @@ export default function App() {
         y: ev.activatorEvent.clientY + ev.delta.y - 25,
       };
 
+      console.log("ev", ev);
       return addFlower(ev.active, position);
     }
     moveFlower(ev.active.id, { x: ev.delta.x, y: ev.delta.y });

@@ -1,6 +1,9 @@
-import { HydrangeaFormElement } from "./flowers/Hydrangea";
+import {
+  HydrangeaFormElement,
+  SunflowerFormElement,
+} from "./flowers/Hydrangea";
 
-export type FlowerType = "Hydrangea";
+export type FlowerType = "Hydrangea" | "Sunflower";
 
 export type Position = {
   x: number;
@@ -15,7 +18,11 @@ export type Properties = {
 export type FormFlower = {
   type: FlowerType;
 
-  construct: (id: string) => FormFlowerInstance;
+  construct: (
+    id: string,
+    type: FlowerType,
+    properties: Properties
+  ) => FormFlowerInstance;
   sidebarFlower: {
     icon: string;
     label: string;
@@ -44,4 +51,5 @@ type FlowerElementsType = {
 };
 export const FlowerElements: FlowerElementsType = {
   Hydrangea: HydrangeaFormElement,
+  Sunflower: SunflowerFormElement,
 };

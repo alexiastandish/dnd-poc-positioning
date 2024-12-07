@@ -32,7 +32,7 @@ export default function Sidebar(props) {
       },
     },
   ];
-
+  console.log("FlowerElements", FlowerElements);
   // TODO: add text about color changing arnd resizing within the layout
   // todo: style not inline
   return (
@@ -50,6 +50,7 @@ export default function Sidebar(props) {
         <SidebarDraggable key={block.id} block={block} />
       ))}
       <SidebarFlower formFlower={FlowerElements.Hydrangea} />
+      <SidebarFlower formFlower={FlowerElements.Sunflower} />
     </div>
   );
 }

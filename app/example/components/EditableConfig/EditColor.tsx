@@ -7,6 +7,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
+import useShelfBuilder from "../../hooks/useShelfBuilder";
 
 export default function EditColor({
   config,
@@ -17,8 +18,13 @@ export default function EditColor({
   activeColor: string;
   editIndex: number;
 }) {
+  const { editFlowerColor } = useShelfBuilder();
   return (
-    <Select.Root defaultValue={activeColor} value={activeColor}>
+    <Select.Root
+      defaultValue={activeColor}
+      value={activeColor}
+      onValueChange={(color) => editFlowerColor(color, editIndex)}
+    >
       <Select.Trigger asChild aria-label="Food">
         <button className={selectStyles.buttonTrigger}>
           <Select.Value />

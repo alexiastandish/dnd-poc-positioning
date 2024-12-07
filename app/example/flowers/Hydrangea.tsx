@@ -19,7 +19,7 @@ const color: string = "yellow";
 const properties: Properties = { size, color };
 export const HydrangeaFormElement: FormFlower = {
   type,
-  construct: (id: string) => ({
+  construct: (id: string, type: FlowerType, properties: Properties) => ({
     id,
     properties,
     type,
@@ -28,6 +28,23 @@ export const HydrangeaFormElement: FormFlower = {
   sidebarFlower: {
     icon: "/images/hydrangea.png",
     label: "Hydrangea",
+  },
+  builderComponent: BuilderComponent,
+  previewerComponent: () => <div>previewerComponent</div>,
+  propertiesComponent: () => <div>propertiesComponent</div>,
+};
+
+export const SunflowerFormElement: FormFlower = {
+  type: "Sunflower",
+  construct: (id: string, type: FlowerType, properties: Properties) => ({
+    id,
+    properties,
+    type,
+    position: { x: 0, y: 0 },
+  }),
+  sidebarFlower: {
+    icon: "/images/sunflower.png",
+    label: "Sunflower",
   },
   builderComponent: BuilderComponent,
   previewerComponent: () => <div>previewerComponent</div>,
