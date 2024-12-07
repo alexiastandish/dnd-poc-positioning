@@ -12,7 +12,6 @@ export function Droppable({ children }) {
     id: "droppable",
   });
 
-  console.log("isOver", isOver);
   const style = {
     background: isOver ? "green" : "red",
   };

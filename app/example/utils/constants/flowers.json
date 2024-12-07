@@ -1,0 +1,49 @@
+{
+  "hydrangea": {
+    "type": "hydrangea",
+    "image": {
+      "alt": "hydrangea",
+      "src": {
+        "yellow": "https://media.greg.app/Y2FyZS1wbGFudC1wcm9maWxlL3VzZXJzLzg2MjE4L3BsYW50LXBob3Rvcy9Ob25lLzE2ODc5NTY0MTUzNzEtRTMyMTI2RjQtOEZBQi00RENCLTk4QzYtMzU4RjZGQkI2QzczLmpwZWc=?auto=webp&width=770&fit=cover&format=pjpg&height=620&optimize=medium&precrop=770:620,smart",
+        "purple": "https://flowermag.com/wp-content/uploads/2023/04/blue-lacecap-hydrangea-macrophylla.jpg",
+        "blue": "https://www.luvsolaflowers.com/cdn/shop/files/real_touch_hydrangea_light_blue_faux_filler_01_12724c58-b5f7-43a2-8bd2-b4207d69badb.jpg?v=1699730559"
+      }
+    },
+    "colors": ["yellow", "purple", "blue"],
+    "size": { "height": 30, "width": 30 }
+  },
+  "sunflower": {
+    "type": "sunflower",
+    "image": {
+      "alt": "sunflower",
+      "src": {
+        "yellow": "https://sakataornamentals.com/wp-content/uploads/sites/13/2022/02/Sunflower_Sunbright-A5-CROP-square-800x800.jpg"
+      }
+    },
+    "colors": ["yellow"],
+    "size": { "height": 100, "width": 100 }
+  },
+  "cosmos": {
+    "type": "cosmos",
+    "image": {
+      "alt": "cosmos",
+      "src": {
+        "white": "https://www.just-b-photography.com/wp-content/uploads/2023/08/Pink-white-cosmos-2615-BP.jpg",
+        "fuschia": "https://www.just-b-photography.com/wp-content/uploads/2023/08/Magenta-cosmos-2574-BP-716x1024.jpg"
+      }
+    },
+    "colors": ["white", "fuschia"],
+    "size": { "height": 70, "width": 70 }
+  },
+  "orange-tj-flowers": {
+    "type": "orange-tj-flowers",
+    "image": {
+      "alt": "orange-tj-flowers",
+      "src": {
+        "orange": "https://i.etsystatic.com/50995003/r/il/39c600/5932817535/il_570xN.5932817535_46fr.jpg"
+      }
+    },
+    "colors": ["orange"],
+    "size": { "height": 60, "width": 60 }
+  }
+}

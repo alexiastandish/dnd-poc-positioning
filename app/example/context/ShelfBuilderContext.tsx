@@ -15,7 +15,11 @@ type ShelfBuilderContextType = {
   flowers: FormFlowerInstance[];
   addFlower: (element: Active, position: Position) => void;
   moveFlower: (elementId: string, moveCoordinates: Position) => void;
-  // updateFlower:
+  editFlower: FormFlowerInstance | null;
+  editIndex: number | null;
+  setEditFlowerAndIndex: (value: FormFlowerInstance, index: number) => void;
+  resetEditFlower: () => void;
+  editFlowerSize: (size: number[], index: number) => void;
 };
 
 export const ShelfBuilderContext =
@@ -27,6 +31,38 @@ export default function ShelfBuilderContextProvider({
   children: ReactNode;
 }) {
   const [flowers, setFlowers] = useState<FormFlowerInstance[]>([]);
+  const [editFlower, setEditFlower] = useState<FormFlowerInstance | null>(null);
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+
+  const setEditFlowerAndIndex = (value: FormFlowerInstance, index: number) => {
+    setEditFlower(value);
+    setEditIndex(index);
+  };
+
+  const resetEditFlower = () => {
+    setEditFlower(null);
+    setEditIndex(null);
+  };
+
+  const editFlowerSize = (size, index) => {
+    console.log("size", size);
+    console.log("flowers", flowers);
+    const updatedFlowers = flowers.map((flower, flowerIndex) => {
+      if (flowerIndex === index) {
+        return {
+          ...flower,
+          properties: { ...flower.properties, size: size[0] },
+        };
+      }
+      return flower;
+    });
+    console.log("updatedFlowers", updatedFlowers);
+    setEditFlower((prev) => ({
+      ...prev,
+      properties: { ...prev.properties, size: size[0] },
+    }));
+    return setFlowers(updatedFlowers);
+  };
 
   const addFlower = (element: Active, position: Position) => {
     const newFlower = FlowerElements[
@@ -51,7 +87,18 @@ export default function ShelfBuilderContextProvider({
   };
 
   return (
-    <ShelfBuilderContext.Provider value={{ flowers, addFlower, moveFlower }}>
+    <ShelfBuilderContext.Provider
+      value={{
+        flowers,
+        addFlower,
+        moveFlower,
+        editFlower,
+        editIndex,
+        setEditFlowerAndIndex,
+        resetEditFlower,
+        editFlowerSize,
+      }}
+    >
       {children}
     </ShelfBuilderContext.Provider>
   );

@@ -12,15 +12,17 @@ const CustomStyle = {
 export function Draggable({
   flower,
   styles,
+  index,
 }: {
   flower: FormFlowerInstance;
   styles: any;
+  index: number;
 }) {
-  console.log("flower", flower);
   const BuilderComponent = FlowerElements[flower.type].builderComponent;
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: flower.id,
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: flower.id,
+    });
 
   const style = transform
     ? {
@@ -35,8 +37,13 @@ export function Draggable({
       {...listeners}
       {...attributes}
     >
-      <BuilderComponent flowerInstance={flower} />
-      {/* {content} */}
+      <div data-no-dnd="true">
+        <BuilderComponent
+          flowerInstance={flower}
+          index={index}
+          isDragging={isDragging}
+        />
+      </div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function Sidebar(props) {
   ];
 
   // TODO: add text about color changing arnd resizing within the layout
-
+  // todo: style not inline
   return (
     <div
       style={{

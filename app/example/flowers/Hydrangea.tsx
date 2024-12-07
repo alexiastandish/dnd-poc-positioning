@@ -1,5 +1,6 @@
 "use client";
 
+import HoverWrapper from "../components/HoverWrapper/HoverWrapper";
 import {
   FlowerType,
   FormFlower,
@@ -7,6 +8,9 @@ import {
   Position,
   Properties,
 } from "../FormElements";
+import flowers from "@/app/example/utils/constants/flowers.json";
+import useShelfBuilder from "../hooks/useShelfBuilder";
+import { IconPencil } from "@tabler/icons-react";
 
 const type: FlowerType = "Hydrangea";
 const size: number = 100;
@@ -28,21 +32,41 @@ export const HydrangeaFormElement: FormFlower = {
   builderComponent: BuilderComponent,
   previewerComponent: () => <div>previewerComponent</div>,
   propertiesComponent: () => <div>propertiesComponent</div>,
-  //   attributes:
 };
 
+// todo: add wiggle on hover
 function BuilderComponent({
   flowerInstance,
+  index,
+  isDragging,
 }: {
   flowerInstance: FormFlowerInstance;
+  index: number;
+  isDragging: boolean;
 }) {
+  const flowerConfig = flowers[flowerInstance.type.toLowerCase()];
+  const { setEditFlowerAndIndex } = useShelfBuilder();
   console.log("flowerInstance", flowerInstance);
   return (
-    <div
-      //   className={`w-[${flowerInstance.properties.size}px] h-[${flowerInstance.properties.size}px]`}
-      className={`w-[${flowerInstance.properties.size}px] h-[${flowerInstance.properties.size}px]`}
+    <HoverWrapper
+      isDragging={isDragging}
+      buttonIcon={<IconPencil stroke={1.5} />}
+      onButtonClick={() => setEditFlowerAndIndex(flowerInstance, index)}
     >
-      {flowerInstance.type}
-    </div>
+      <div
+        className={`w-[${flowerInstance.properties.size}px] h-[${flowerInstance.properties.size}px]`}
+        // todo: remove temporary
+        style={{
+          background: isDragging ? "blue" : "transparent",
+          height: flowerInstance.properties?.size,
+          width: flowerInstance.properties?.size,
+        }}
+      >
+        <img
+          src={flowerConfig.image.src[flowerInstance.properties.color]}
+          alt={flowerInstance.type}
+        />
+      </div>
+    </HoverWrapper>
   );
 }

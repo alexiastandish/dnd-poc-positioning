@@ -11,9 +11,19 @@
   "dependencies": {
     "@dnd-kit/core": "^6.2.0",
     "@dnd-kit/modifiers": "^8.0.0",
+    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-select": "^2.1.2",
+    "@radix-ui/react-slider": "^1.2.1",
+    "@tabler/icons": "^3.24.0",
+    "@tabler/icons-react": "^3.24.0",
+    "classnames": "^2.5.1",
+    "framer-motion": "^11.13.1",
     "next": "15.0.3",
+    "postcss-scss": "^4.0.9",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
+    "sass": "^1.82.0",
     "uuid": "^11.0.3"
   },
   "devDependencies": {

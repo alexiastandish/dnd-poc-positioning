@@ -21,7 +21,11 @@ export type FormFlower = {
     label: string;
   };
   // drag and drop element
-  builderComponent: React.FC<{ flowerInstance: FormFlowerInstance }>;
+  builderComponent: React.FC<{
+    flowerInstance: FormFlowerInstance;
+    index: number;
+    isDragging: boolean;
+  }>;
   // when viewing non editable preview of shelf
   previewerComponent: React.FC;
   // right rail properties
