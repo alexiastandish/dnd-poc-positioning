@@ -29,7 +29,7 @@ const HoverWrapper = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="middle none center flex items-center justify-center z-10 top-[2px] p-0.5 cursor-pointer right-[2px] absolute rounded-full bg-pink-500 text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="center flex items-center justify-center z-10 top-[0px]  cursor-pointer right-[0px] absolute  bg-pink-500 shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none h-[30px] w-[30px]"
             onClick={(e) => {
               e.stopPropagation();
               onButtonClick();
@@ -39,7 +39,7 @@ const HoverWrapper = ({
           </motion.button>
         )}
       </AnimatePresence>
-      {children}
+      <div style={{ zIndex: 1 }}>{children}</div>
     </div>
   );
 };

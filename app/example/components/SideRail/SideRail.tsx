@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useShelfBuilder from "../../hooks/useShelfBuilder";
 import { IconX } from "@tabler/icons-react";
+import styles from "./SideRail.module.scss";
 
 export default function SideRail({ children }: { children: ReactNode }) {
   const { editFlower, resetEditFlower } = useShelfBuilder();
@@ -11,13 +12,7 @@ export default function SideRail({ children }: { children: ReactNode }) {
       <AnimatePresence>
         {editFlower && (
           <motion.aside
-            // todo: fix inline styles
-            style={{
-              height: "100%",
-              background: "green",
-              position: "absolute",
-              width: "300px",
-            }}
+            className={styles.sideRail}
             initial={{ right: "-300px" }}
             animate={{
               right: 0,
