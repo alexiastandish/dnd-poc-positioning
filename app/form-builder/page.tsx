@@ -22,12 +22,10 @@ const defaultCoordinates = {
 
 export default function FormBuilder() {
   const [elements, setElements] = useState([]);
-  console.log("elements", elements);
   const [{ translate }, setTranslate] = useState({
     initialTranslate: { x: 0, y: 0 },
     translate: { x: 0, y: 0 },
   });
-  console.log("translate", translate);
   const [initialWindowScroll, setInitialWindowScroll] = useState({
     x: 0,
     y: 0,
@@ -56,8 +54,6 @@ export default function FormBuilder() {
         }));
       }}
       onDragEnd={(e) => {
-        console.log("e", e);
-
         setElements((prev) => [
           ...prev,
           { ...e.active, position: { x: translate.x, y: translate.y } },

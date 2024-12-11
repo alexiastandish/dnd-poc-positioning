@@ -33,7 +33,7 @@ export default function EditColor({
           </Select.Icon>
         </button>
       </Select.Trigger>
-      <Select.Content position="popper">
+      <Select.Content position="popper" style={{ zIndex: 1 }}>
         <Select.ScrollUpButton className="flex text-gray-700 dark:text-gray-300">
           <ChevronUpIcon />
         </Select.ScrollUpButton>

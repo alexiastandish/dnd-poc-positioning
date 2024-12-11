@@ -4,7 +4,7 @@ import useShelfBuilder from "../../hooks/useShelfBuilder";
 import EditColor from "./EditColor";
 import EditSize from "./EditSize";
 export default function EditableConfig() {
-  const { editFlower, editIndex, resetEditFlower } = useShelfBuilder();
+  const { editFlower, editIndex, removeFlower } = useShelfBuilder();
 
   if (!editFlower) return;
 
@@ -31,6 +31,7 @@ export default function EditableConfig() {
         activeSize={editFlower.properties?.size}
         editIndex={editIndex}
       />
+      <button onClick={removeFlower}>Remove</button>
     </div>
   );
 }

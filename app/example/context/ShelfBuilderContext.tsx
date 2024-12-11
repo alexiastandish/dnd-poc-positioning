@@ -21,6 +21,7 @@ type ShelfBuilderContextType = {
   resetEditFlower: () => void;
   editFlowerSize: (size: number[], index: number) => void;
   editFlowerColor: (color: string, index: number) => void;
+  removeFlower: () => void;
 };
 
 export const ShelfBuilderContext =
@@ -45,7 +46,7 @@ export default function ShelfBuilderContextProvider({
     setEditIndex(null);
   };
 
-  const editFlowerSize = (size, index) => {
+  const editFlowerSize = (size: number[], index: number) => {
     const updatedFlowers = [...flowers];
     const updatedFlower = { ...flowers[index] };
     updatedFlower.properties.size = size[0];
@@ -55,7 +56,7 @@ export default function ShelfBuilderContextProvider({
     return setFlowers(updatedFlowers);
   };
 
-  const editFlowerColor = (color, index) => {
+  const editFlowerColor = (color: string, index: number) => {
     const updatedFlowers = [...flowers];
     const updatedFlower = { ...flowers[index] };
     updatedFlower.properties.color = color;
@@ -73,7 +74,6 @@ export default function ShelfBuilderContextProvider({
     const newFlower = FlowerElements[
       element?.data?.current?.type as FlowerType
     ].construct(generateId(), element?.data?.current?.type, properties);
-    console.log("newFlower", newFlower);
 
     return setFlowers((prev) => {
       return [...prev, { ...newFlower, position }];
@@ -92,6 +92,12 @@ export default function ShelfBuilderContextProvider({
     setFlowers(_flowers);
   };
 
+  const removeFlower = () => {
+    const updatedFlowers = [...flowers];
+    updatedFlowers.splice(editIndex, 1);
+    setFlowers(updatedFlowers);
+  };
+
   return (
     <ShelfBuilderContext.Provider
       value={{
@@ -104,6 +110,7 @@ export default function ShelfBuilderContextProvider({
         resetEditFlower,
         editFlowerSize,
         editFlowerColor,
+        removeFlower,
       }}
     >
       {children}

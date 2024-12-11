@@ -21,7 +21,6 @@ export class SmartPointerSensor extends PointerSensor {
 }
 
 function isInteractiveElement(element: Element | null) {
-  console.log("element", element);
   const interactiveElements = [
     "button",
     "input",

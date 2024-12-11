@@ -14,7 +14,6 @@ export default function EditSize({
   minFlowerSize: number;
   maxFlowerSize: number;
 }) {
-  console.log("activeSize", activeSize);
   const { editFlowerSize } = useShelfBuilder();
   // TODO: add note about guestimating sizes
   return (

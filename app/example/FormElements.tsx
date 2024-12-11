@@ -1,9 +1,10 @@
 import {
   HydrangeaFormElement,
   SunflowerFormElement,
-} from "./flowers/Hydrangea";
+  CosmosFormElement,
+} from "./flowers/Flower";
 
-export type FlowerType = "Hydrangea" | "Sunflower";
+export type FlowerType = "Hydrangea" | "Sunflower" | "Cosmos";
 
 export type Position = {
   x: number;
@@ -52,4 +53,5 @@ type FlowerElementsType = {
 export const FlowerElements: FlowerElementsType = {
   Hydrangea: HydrangeaFormElement,
   Sunflower: SunflowerFormElement,
+  Cosmos: CosmosFormElement,
 };

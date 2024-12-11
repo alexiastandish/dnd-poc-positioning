@@ -5,20 +5,14 @@ import {
   FlowerType,
   FormFlower,
   FormFlowerInstance,
-  Position,
   Properties,
 } from "../FormElements";
 import flowers from "@/app/example/utils/constants/flowers.json";
 import useShelfBuilder from "../hooks/useShelfBuilder";
 import { IconPencil } from "@tabler/icons-react";
 
-const type: FlowerType = "Hydrangea";
-const size: number = 100;
-const color: string = "yellow";
-
-const properties: Properties = { size, color };
 export const HydrangeaFormElement: FormFlower = {
-  type,
+  type: "Hydrangea",
   construct: (id: string, type: FlowerType, properties: Properties) => ({
     id,
     properties,
@@ -51,6 +45,23 @@ export const SunflowerFormElement: FormFlower = {
   propertiesComponent: () => <div>propertiesComponent</div>,
 };
 
+export const CosmosFormElement: FormFlower = {
+  type: "Cosmos",
+  construct: (id: string, type: FlowerType, properties: Properties) => ({
+    id,
+    properties,
+    type,
+    position: { x: 0, y: 0 },
+  }),
+  sidebarFlower: {
+    icon: "/images/cosmos.png",
+    label: "Cosmos",
+  },
+  builderComponent: BuilderComponent,
+  previewerComponent: () => <div>previewerComponent</div>,
+  propertiesComponent: () => <div>propertiesComponent</div>,
+};
+
 // todo: add wiggle on hover
 function BuilderComponent({
   flowerInstance,
@@ -63,18 +74,15 @@ function BuilderComponent({
 }) {
   const flowerConfig = flowers[flowerInstance.type.toLowerCase()];
   const { setEditFlowerAndIndex } = useShelfBuilder();
-  console.log("flowerInstance", flowerInstance);
   return (
     <HoverWrapper
       isDragging={isDragging}
-      buttonIcon={<IconPencil stroke={1.5} />}
+      buttonIcon={<IconPencil stroke={1.5} size="20px" />}
       onButtonClick={() => setEditFlowerAndIndex(flowerInstance, index)}
     >
       <div
-        className={`w-[${flowerInstance.properties.size}px] h-[${flowerInstance.properties.size}px]`}
-        // todo: remove temporary
+        className={`w-[${flowerInstance.properties.size}px] h-[${flowerInstance.properties.size}px] overflow-hidden`}
         style={{
-          background: isDragging ? "blue" : "transparent",
           height: flowerInstance.properties?.size,
           width: flowerInstance.properties?.size,
         }}
@@ -82,6 +90,7 @@ function BuilderComponent({
         <img
           src={flowerConfig.image.src[flowerInstance.properties.color]}
           alt={flowerInstance.type}
+          className="w-[100%] h-[100%] object-cover"
         />
       </div>
     </HoverWrapper>

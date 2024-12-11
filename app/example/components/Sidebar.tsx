@@ -6,33 +6,6 @@ import SidebarFlower from "./SidebarFlower";
 import { FlowerElements } from "../FormElements";
 
 export default function Sidebar(props) {
-  const blocks = [
-    {
-      id: "block-1",
-      label: "Header",
-      position: {
-        x: 0,
-        y: 0,
-      },
-    },
-    {
-      id: "block-2",
-      label: "Text",
-      position: {
-        x: 0,
-        y: 0,
-      },
-    },
-    {
-      id: "block-3",
-      label: "Image",
-      position: {
-        x: 0,
-        y: 0,
-      },
-    },
-  ];
-  console.log("FlowerElements", FlowerElements);
   // TODO: add text about color changing arnd resizing within the layout
   // todo: style not inline
   return (
@@ -46,11 +19,10 @@ export default function Sidebar(props) {
       }}
     >
       <h3>Blocks</h3>
-      {blocks.map((block) => (
-        <SidebarDraggable key={block.id} block={block} />
-      ))}
+
       <SidebarFlower formFlower={FlowerElements.Hydrangea} />
       <SidebarFlower formFlower={FlowerElements.Sunflower} />
+      <SidebarFlower formFlower={FlowerElements.Cosmos} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   DndContext,
   DragEndEvent,
-  useDraggable,
+  pointerWithin,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -12,19 +12,18 @@ import { Draggable } from "./components/Draggable";
 import { Droppable } from "./components/Droppable";
 import "./styles.css";
 import Sidebar from "./components/Sidebar";
-import { snapCenterToCursor } from "@dnd-kit/modifiers";
+import { restrictToWindowEdges, snapCenterToCursor } from "@dnd-kit/modifiers";
 import useShelfBuilder from "./hooks/useShelfBuilder";
 import SideRail from "./components/SideRail/SideRail";
 import { SmartPointerSensor } from "./components/SmartPointerSensor";
 import EditableConfig from "./components/EditableConfig/EditableConfig";
 
-// const notesData = [];
-
 export default function App() {
-  const { flowers, addFlower, moveFlower, editFlower } = useShelfBuilder();
+  const { flowers, addFlower, moveFlower } = useShelfBuilder();
 
   function handleDragEnd(ev: DragEndEvent) {
     const { over } = ev;
+
     if (!over) return;
     if (ev.active.data?.current?.isSidebarItem) {
       const position = {
@@ -32,7 +31,6 @@ export default function App() {
         y: ev.activatorEvent.clientY + ev.delta.y - 25,
       };
 
-      console.log("ev", ev);
       return addFlower(ev.active, position);
     }
     moveFlower(ev.active.id, { x: ev.delta.x, y: ev.delta.y });
@@ -43,7 +41,8 @@ export default function App() {
   return (
     <DndContext
       onDragEnd={handleDragEnd}
-      modifiers={[snapCenterToCursor]}
+      modifiers={[snapCenterToCursor, restrictToWindowEdges]}
+      collisionDetection={pointerWithin}
       sensors={sensors}
     >
       <Sidebar />
@@ -61,6 +60,7 @@ export default function App() {
           />
         ))}
       </Droppable>
+
       <SideRail>
         <EditableConfig />
       </SideRail>
